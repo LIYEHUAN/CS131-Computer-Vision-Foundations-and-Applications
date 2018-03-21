@@ -1,2 +1,4 @@
 # CS131-Computer-Vision-Foundations-and-Applications
-Assignments or anything related with CS131 Computer Vision course
+
+This is a repository of assignments of CS131 Computer Vision: Foundations and Applications. 
+Anything related will alse be recorded here.
