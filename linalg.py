@@ -55,7 +55,7 @@ def svd(matrix):
     s = None
     v = None
     ### YOUR CODE HERE
-    pass
+    u,s,v = np.linalg.svd(matrix)
     ### END YOUR CODE
 
     return u, s, v
@@ -72,7 +72,7 @@ def get_singular_values(matrix, n):
     singular_values = None
     u, s, v = svd(matrix)
     ### YOUR CODE HERE
-    pass
+    singular_values = s[np.argpartition(s,-n)[-n:]]
     ### END YOUR CODE
     return singular_values
 
@@ -87,7 +87,7 @@ def eigen_decomp(matrix):
     w = None
     v = None
     ### YOUR CODE HERE
-    pass
+    w,v = np.linalg.eig(matrix)
     ### END YOUR CODE
     return w, v
 
@@ -105,6 +105,17 @@ def get_eigen_values_and_vectors(matrix, num_values):
     eigen_values = []
     eigen_vectors = []
     ### YOUR CODE HERE
-    pass
+    eigen_values = w[np.argpartition(w,-num_values)[-num_values:]]
+    # Initialize eigen_vectors as a matrix
+    size_top = eigen_values.shape[0]
+    size = w.shape[0]
+    count = 0
+    eigen_vectors = np.zeros((size_top,size))
+    while count < size_top:
+        index_temp = np.where(w == eigen_values[count])
+        # The result of mp.where is tuple, transfer to integer
+        index = index_temp[0][0]
+        eigen_vectors[count,:] = v[index,:]
+        count = count + 1
     ### END YOUR CODE
     return eigen_values, eigen_vectors
